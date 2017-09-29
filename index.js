@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import XML2JS from 'xml2js';
-import WeatherController from './WeatherController.js';
-import BannerController from './BannerController.js';
+// import XML2JS from 'xml2js';
+//import WeatherController from './WeatherController.js';
+//import BannerController from './BannerController.js';
 
 //logo url : http://kotv.images.worldnow.com/images/12670727_G.png
 const jQuery = window['$'];
@@ -11,33 +11,33 @@ const stationID = stationCall === 'kwtv' ? 2 : 1;
 const bannerUrl = `http://kotv.com/api/GetBanners.aspx?station=${stationCall}&IsWeb=true`;
 
 const headerbar = {
-  position: 'fixed', 
+  position: 'fixed',
   top: 0,
   left: 0,
-  zIndex: '10000', 
+  zIndex: '10000',
   width: '100%'
 };
 const headertop = {
-  height: '111px', 
+  height: '111px',
   backgroundColor: '#222'
 };
 const headerbottom = {
-  height: '48px', 
+  height: '48px',
   backgroundColor: '#be0000'
 };
 const navul = {
   listStyle: 'none',
-  margin: 0, 
+  margin: 0,
   padding: 0
 };
 const navli = {
   float: 'left'
 };
 const navlia = {
-		color: '#fff', 
-		textDecoration: 'none', 
-		textTransform: 'uppercase', 
-		height: '48px', 
+		color: '#fff',
+		textDecoration: 'none',
+		textTransform: 'uppercase',
+		height: '48px',
 		lineHeight: '48px',
 		fontWeight: 'bold',
 		fontSize: '17.84px',
@@ -45,10 +45,10 @@ const navlia = {
 		display: 'block'
 };
 const navliaham = {
-		color: '#fff', 
-		textDecoration: 'none', 
-		textTransform: 'uppercase', 
-		height: '48px', 
+		color: '#fff',
+		textDecoration: 'none',
+		textTransform: 'uppercase',
+		height: '48px',
 		lineHeight: '48px',
 		fontWeight: 'bold',
 		fontSize: '20.84px',
@@ -69,27 +69,27 @@ const logostytwo = {
 };
 const logosty = stationCall === 'kwtv' ? logostyone : logostytwo;
 const meganavmain = {
-  background: '#fff', 
+  background: '#fff',
   padding: '30px 0'
 };
 const meganavul = {
-  margin: '0 0 10px 0', 
-  listStyle: 'none', 
-  float: 'left', 
+  margin: '0 0 10px 0',
+  listStyle: 'none',
+  float: 'left',
   width: '242px'
 };
 const meganavli = {
   margin: 0
 };
 const meganavabold = {
-  fontWeight: 'bold', 
-  textDecoration: 'none', 
+  fontWeight: 'bold',
+  textDecoration: 'none',
   color: '#333',
   fontSize: '20.84px',
   textTransform: 'uppercase'
 };
 const meganava = {
-  textDecoration: 'none', 
+  textDecoration: 'none',
   color: '#333',
   fontSize: '17.84px',
   lineHeight: '30px'
@@ -98,7 +98,7 @@ const meganavclear = {
   clear: 'both'
 };
 const wxMiniTop = {
-  fontSize: '12.63px', 
+  fontSize: '12.63px',
   textAlign: 'right'
 };
 const wxRadarImg = {
@@ -108,36 +108,36 @@ const fLeft = {
   float: 'left'
 };
 const radarBox = {
-  float: 'left', 
+  float: 'left',
   marginTop: '11px'
 };
 const highlowBox = {
-  float: 'left', 
-  margin: '10px 10px 0 0', 
+  float: 'left',
+  margin: '10px 10px 0 0',
   lineHeight: '15px'
 };
 const feelslike = {
-  fontSize: '12.63px', 
+  fontSize: '12.63px',
   color: '#ccc'
 };
 const highlow = {
-  fontSize: '16px', 
+  fontSize: '16px',
   color: '#fff'
 };
 const labelHigh = {
-  fontSize: '10.22px', 
-  color: '#f9cf6c', 
+  fontSize: '10.22px',
+  color: '#f9cf6c',
   fontWeight: 500
 };
 const labelLow = {
-  fontSize: '10.22px', 
-  color: '#92a4c4', 
-  fontWeight: 500, 
+  fontSize: '10.22px',
+  color: '#92a4c4',
+  fontWeight: 500,
   paddingLeft: '3px'
 };
 const loclink = {
-  color: '#fff', 
-  textDecoration: 'underline', 
+  color: '#fff',
+  textDecoration: 'underline',
   fontWeight: 'bold'
 };
 const mobilemeganav = {
@@ -162,12 +162,12 @@ class Header extends Component{
 		this.state = {
 			headerImgUrl: 'http://kotv.images.worldnow.com/images/12670727_G.png',
 			radarImg: `http://aws.kotv.com/MorHtml5/kotv/ssite/110x62_new/main_anim.gif?${(new Date()).getTime()}`,
-			navItems: [], 
-      megaNav: [], 
-      city: '', 
-      state: '', 
-      conditionIcon: '', 
-      temp: '', 
+			navItems: [],
+      megaNav: [],
+      city: '',
+      state: '',
+      conditionIcon: '',
+      temp: '',
       feelsLike: '',
 			high: '',
       low: '',
@@ -177,9 +177,11 @@ class Header extends Component{
 	}
 
   componentDidMount(){
+    /** TODO: Uncomment this block after dependencies are fully support
     jQuery.ajax({ url:'http://ftpcontent.worldnow.com/kotv/test/wx/tempnav.json', dataType:'jsonp', jsonpCallback:'Nav'}).then((data) => { this.buildState(data); });
     let wxController = new WeatherController(stationID);
     wxController.getCache('currents', this.buildWeather);
+     */
     //let bannerController = new BannerController(stationID);
     //bannerController.getCache(this.buildBanners);
     //jQuery.ajax({ url:bannerUrl, dataType: 'json'}).then((data) => { this.buildBanners(data); });
@@ -187,7 +189,7 @@ class Header extends Component{
     /*$.ajax({
       url: 'http://kotv.com/api/GetNavigation.ashx?Station=' + stationCall + '&NavTypeId=1',
       dataType:'text'
-    }).then((data) => { 
+    }).then((data) => {
       this.buildState(data);
       //this.setState({ navHtml: data['html'] });
     });*/
